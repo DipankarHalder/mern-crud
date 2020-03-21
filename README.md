@@ -1,4 +1,4 @@
-# mern-crud using React Hooks
+# Simple MERN CRUD using React Hooks
 A simple CRUD application using :
 
 1. Node.js
