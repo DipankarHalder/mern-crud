@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { useEffect, useState } from 'react';
 
 const List = (props) => {
-
     const [items, setItems] = useState([]);
     const [Loading, setLoading] = useState(true);
-
     useEffect(() => {
         setLoading(false);
         axios
@@ -17,14 +15,11 @@ const List = (props) => {
             })
             .catch(error => setLoading(true));
     }, []);
-
     const detailsItem = (id) => { props.history.push({ pathname: '/show/' + id }) }
-
+    
     return (
         <div className="app-fwidth app-listContent">
-            {Loading && 
-                <div>Loading...</div>
-            }
+            {Loading && (<div>Loading...</div>)}
             {items.reverse().map((item, i) => {
                 let itemId = item._id.slice(16, 24);
                 let itemTitle = item.title.slice(0, 70);

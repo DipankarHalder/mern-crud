@@ -1,42 +1,37 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const Edit = (props) => {
-
+    const apiPath = 'http://localhost:8000/api/items';
     const [addItem, setAddItem] = useState({ title: '', body: '', author: '', email: '', phone: '', website: '' });
     const [Loading, setLoading] = useState(false);
-
     useEffect(() => {
         setLoading(false);
         axios
-            .get(`http://localhost:8000/api/items/${props.match.params.id}`)
+            .get(`${apiPath}/${props.match.params.id}`)
             .then(res => {
                 setAddItem(res.data.data);
                 setLoading(false);
             })
             .catch(error => setLoading(true));
-    }, []);
-
+    }, [props.match.params.id]);
     const handleChange = (e) => {
         e.persist();
         setAddItem({ ...addItem, [e.target.name]: e.target.value });
     }
-
     const updateItem = (e) => {
         e.preventDefault();
         setLoading(true);
-
         const { title, body, author, email, phone, website } = addItem;
         const newData = { title, body, author, email, phone, website };
         axios
-            .put(`http://localhost:8000/api/items/${props.match.params.id}`, newData)
+            .put(`${apiPath}/${props.match.params.id}`, newData)
             .then((result) => {
                 setLoading(false);
                 props.history.push('/show/' + result.data.data._id);
             })
             .catch((error) => setLoading(false));
     };
-
     const backItem = (id) => { props.history.push({ pathname: '/show/' + id }) }
 
     return (
@@ -78,5 +73,4 @@ const Edit = (props) => {
         </div>
     )
 }
-
 export default Edit;

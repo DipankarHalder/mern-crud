@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
 import axios from 'axios';
+import React, { useState } from 'react';
 
 const Add = (props) => {
-
     const [addItem, setAddItem] = useState({ title: '', body: '', author: '', email: '', phone: '', website: '' });
     const [Loading, setLoading] = useState(false);
-
     const handleChange = (e) => {
         e.persist();
         setAddItem({ ...addItem, [e.target.name]: e.target.value });
     }
-
     const addNewItem = (e) => {
         e.preventDefault();
         setLoading(true);
-
         const { title, body, author, email, phone, website } = addItem;
         const newData = { title, body, author, email, phone, website };
         axios
@@ -26,7 +22,6 @@ const Add = (props) => {
             })
             .catch((error) => setLoading(false));
     }
-
     const backItem = (id) => { props.history.push({ pathname: '/list' }) }
 
     return (
@@ -67,5 +62,4 @@ const Add = (props) => {
         </div>
     )
 }
-
 export default Add;
