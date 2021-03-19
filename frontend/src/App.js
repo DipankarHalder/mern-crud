@@ -1,21 +1,17 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-import Header from './component/common/header';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Footer from './component/common/footer';
+import Header from './component/common/header';
 import Home from './component/Home';
-
-import List from './component/List/list';
 import Add from './component/List/add';
-import Show from './component/List/show';
 import Edit from './component/List/edit';
+import List from './component/List/list';
+import Show from './component/List/show';
 
 const App = () => {
     return (
         <BrowserRouter>
-
             <Header />
-
             <section className="app-fwidth app-body">
                 <div className="app-container">
                     <div className="app-fwidth">
@@ -29,11 +25,8 @@ const App = () => {
                     </div>
                 </div>
             </section>
-
             <Footer />
-
         </BrowserRouter>
     );
 }
-
 export default App;
