@@ -1,21 +1,24 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ItemSchema = new Schema(
-    {
-        name: { 
-            type: String, 
-            required: true 
-        },
-        email: { 
-            type: String, 
-            required: true 
-        },
-        phone: { 
-            type: String, 
-            required: true
-        }
-    }, { 
-        timestamps: true 
+  {
+    name: {
+      type: String,
+      required: true
+    },
+    email: {
+      type: String,
+      required: true
+    },
+    phone: {
+      type: String,
+      required: true
     }
+  }, {
+    timestamps: true
+  }
 );
-module.exports = mongoose.model('Item', ItemSchema);
+module.exports = mongoose.model(
+  'Item',
+  ItemSchema
+);
